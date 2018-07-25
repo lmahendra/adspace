@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th></th>
+      <th>Id</th>
       <th>Slot name</th>
       <th>Description</th>
       <th>Start time</th>
@@ -11,6 +12,7 @@
       <th>Bid end</th>
       <th>Winner bid</th>
       <th>Status</th>
+      <th>Expiry</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,6 +21,7 @@
     <% @slots.each do |slot| %>
       <tr>
         <td></td>
+        <td><%= slot.id %></td>
         <td><%= slot.slot_name %></td>
         <td><%= slot.description %></td>
         <td><%= slot.start_time.strftime('%l: %M %p') %></td>
@@ -31,9 +34,12 @@
            <% end %>
          </td>
         <td><%= slot.status_text %></td>
-        <td><%= link_to 'Show', slot %></td>
-        <td><%= link_to 'Edit', edit_slot_path(slot) %></td>
-        <td><%= link_to 'Destroy', slot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= slot.expiry.present? ? slot.expiry.strftime('%d/%m/%Y') : "" %></td>
+        <td>
+          <% if slot.status_text == "Available" %>
+            <%= link_to 'Edit', edit_slot_path(slot) %>
+          <% end %>
+          </td>
       </tr>
     <% end %>
   </tbody>

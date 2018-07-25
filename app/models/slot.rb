@@ -21,7 +21,7 @@ class Slot < ApplicationRecord
 
 	def send_mail
 		if self.status == 2
-			SlotMailer.slot_allotted(self, Bid.find(winner_bid).user).deliver_later
+			SlotMailer.slot_allotted(self, Bid.find(winner_bid).user).deliver_now
 		end
 	end
 

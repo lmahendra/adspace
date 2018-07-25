@@ -1,1 +1,64 @@
-<div> Congrats </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ad Slot Alloted </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  </head>
+  <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
+
+  <!-- HIDDEN PREHEADER TEXT -->
+    <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family:Arial, Helvetica, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    </div>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <!-- LOGO -->
+      <tr>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" >
+            <tr>
+              <td bgcolor="#ffffff" align="left" style="padding: 0px 30px; color: #666666; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight: 400; line-height: 20px;" >
+                  <strong>
+                   Dear <%= @user.try(:full_name) %>  ,
+                  </strong>
+                  <br>
+                  Thank you for your recent bidding on  
+                  <strong>
+                    <%= @slot.try(:slot_name) %>.
+                  </strong>
+                  <br>
+                  Your bidding is sucessful and slot is allotted to you as follows:
+              </td>
+            </tr>
+            <tr>
+              <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0; font-family:Arial, Helvetica, sans-serif; font-size:13px; padding: 10px 30px; background:#ffffff;">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;">Slot ID:</td>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;"><strong>#<%= @slot.id %></strong></td>
+                  </tr>
+                  <tr>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;">Slot Time:</td>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;"><strong><%= @slot.start_time.strftime('%l: %M %p') %> <%= @slot.end_time.strftime('%l: %M %p') %> </strong></td>
+                  </tr>
+                  <tr>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;">Expiry:</td>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;"><strong><%= @slot.expiry.strftime('%d/%m/%Y') %></strong></td>
+                  </tr>
+                  <tr>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;">Amount</td>
+                    <td style="border-top:1px solid #e6e6e6; padding:10px 0px;"><strong><%= Bid.find(@slot.winner_bid).try(:amount) %></strong></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            
+            <tr>
+              <td bgcolor="#ffffff" align="left" style="padding: 0px 30px; color: #666666; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight: 600; line-height: 20px; padding-bottom:10px;">
+                Thank you.
+              </td>
+            </tr>
+          </table>
+	  </tr>
+	</table>
+  </body>
+</html>

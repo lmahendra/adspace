@@ -44,7 +44,7 @@ class SlotsController < ApplicationController
     @slot = Slot.new(slot_params.merge(:user_id => current_user.id))
     respond_to do |format|
       if @slot.save
-        format.html { redirect_to @slot, notice: 'Slot was successfully created.' }
+        format.html { redirect_to "/slots", notice: 'Slot was successfully created.' }
         format.json { render :show, status: :created, location: @slot }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class SlotsController < ApplicationController
   def update
     respond_to do |format|
       if @slot.update(slot_params)
-        format.html { redirect_to @slot, notice: 'Slot was successfully updated.' }
+        format.html { redirect_to "/slots", notice: 'Slot was successfully updated.' }
         format.json { render :show, status: :ok, location: @slot }
       else
         format.html { render :edit }

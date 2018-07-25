@@ -6,7 +6,6 @@ class BidsController < ApplicationController
   # GET /bids
   # GET /bids.json
   def index
-    #binding.pry
     @slots = Slot.where(user_id: current_user.id)
     @bids = Bid.where(slot_id: @slots.pluck(:id))
   end
