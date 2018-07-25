@@ -10,7 +10,7 @@
         <td><%= slot.bid_end.strftime('%d/%m/%Y') %></td>
         <td><%= slot.bids.last.try(:amount) %> <span class="small"> by <%= slot.bids.last.try(:user).try(:full_name) %> </span></td>
         <td>
-          <% if slot.can_bid_user(current_user) %> 
+          <% if slot.can_bid && slot.can_bid_user(current_user) %> 
             <button class="btn btn-primary btn-sm mbtn" data-toggle="modal" data-target="#bidslotnew<%= slot.id %>">Bid Now </button>
           
           <% end %>

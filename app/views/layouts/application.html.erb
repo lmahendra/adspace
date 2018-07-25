@@ -22,14 +22,14 @@
 		      <li class="nav-header">
 		          <div> <img alt="image" src="/logo.jpeg" style="height: 50px; width: 90px" /> </div>
 		      </li>
-		      <% if current_user.present? && current_user.utype == "organization" %>
+		      <% if current_user.present? && current_user.utype == "provider" %>
 		        <li  class="<%= (request.original_url.include? "slots") ? 'active' : '' %> ">
 		      	  <a href="/slots">slots</a>
 		        </li>
 		        <li class="<%= (request.original_url.include? "bids") ? 'active' : '' %> ">
 		      	  <a href="/bids">Bids</a>
 		        </li>
-		      <% elsif current_user.present? && current_user.utype == "provider" %>
+		      <% elsif current_user.present? && current_user.utype == "organization" %>
 		      	<li class="<%= (request.original_url.include? "available") ? 'active' : '' %> ">
 		      	  <a href="/slots/available">Available slots</a>
 		        </li>
