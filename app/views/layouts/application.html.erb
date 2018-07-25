@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%= stylesheet_link_tag "bootstrap.min" %>
+<%= javascript_include_tag "jquery.min" %>
+  <head>
+    <title>Adspace</title>
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div id="wrapper">
+  		<nav class="navbar-default navbar-static-side" role="navigation">
+		  <div class="sidebar-collapse">
+		    <ul class="nav" id="side-menu">
+		      <li class="nav-header">
+		          <div> <img alt="image" src="/logo.jpeg" style="height: 50px; width: 90px" /> </div>
+		      </li>
+		      <% if current_user.present? && current_user.utype == "organization" %>
+		        <li  class="<%= (request.original_url.include? "slots") ? 'active' : '' %> ">
+		      	  <a href="/slots">slots</a>
+		        </li>
+		        <li class="<%= (request.original_url.include? "bids") ? 'active' : '' %> ">
+		      	  <a href="/bids">Bids</a>
+		        </li>
+		      <% elsif current_user.present? && current_user.utype == "provider" %>
+		      	<li class="<%= (request.original_url.include? "available") ? 'active' : '' %> ">
+		      	  <a href="/slots/available">Available slots</a>
+		        </li>
+		        <li class="<%= (request.original_url.include? "mybids") ? 'active' : '' %> ">
+		      	  <a href="/bids/mybids">My Bids</a>
+		        </li>
+		        <li class="<%= (request.original_url.include? "myslots") ? 'active' : '' %> ">
+		      	  <a href="/slots/myslots">My Ad Slots</a>
+		        </li>
+		      <% end %>
+		  	</ul>
+  		  </div>
+  		</nav>
+  		<div id="page-wrapper" class="white-bg">
+  		  <div class="wrapper wrapper-content">
+      		<section class="content">
+	    	  <div class="row">
+	      		<div class="col-sm-12">
+	        	  <div class="ui menu top-menu"> 
+	  				<div class="right menu">
+			            <div class="item main-top-menu"><a class="ui label"> mahendra L </a> </div>
+			            <div class="item main-top-menu"><a href="/logout"><i class="sign out alternate icon"></i></a></div>
+			          </div>
+	    		  </div>
+	    		</div>
+	    	  </div>
+	    	  <div class="row">
+	    	  	<p class="notice"><%= notice %></p>
+    			<p class="alert"><%= alert %></p>
+	    	  </div>
+	    	  <%= yield %>
+	    	</section>
+    	  </div>
+    	</div>
+    </div>
+  </body>
+</html>
+<%= javascript_include_tag "bootstrap.min" %>

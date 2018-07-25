@@ -1,0 +1,28 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Slot name</th>
+      <th>Description</th>
+      <th>Winner bid</th>
+      <th>Expiry</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @slots.each do |slot| %>
+      <tr>
+        <td></td>
+        <td><%= slot.slot_name %></td>
+        <td><%= slot.description %></td>
+        <td><% if slot.winner_bid.present? %>
+           <%= slot.bids.last.try(:amount) %> <span class="small"> by <%= slot.bids.last.try(:user).try(:full_name) %> </span>
+           <% end %>
+         </td>
+         <td><%= slot.expiry.strftime('%d/%m/%Y') %></td>
+        <td><%= slot.status_text %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

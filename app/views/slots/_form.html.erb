@@ -1,0 +1,57 @@
+<%= form_with(model: slot, local: true) do |form| %>
+  <% if slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+
+      <ul>
+      <% slot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :slot_name %>
+    <%= form.text_field :slot_name, id: :slot_slot_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :slot_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.time_select :start_time, id: :slot_start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.time_select :end_time, id: :slot_end_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_amount %>
+    <%= form.number_field :min_amount, id: :slot_min_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bid_start %>
+    <%= form.date_select :bid_start, id: :slot_bid_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bid_end %>
+    <%= form.date_select :bid_end, id: :slot_bid_end %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Allotment Time (in Days)" %>
+    <%= form.number_field :allot_days, id: :slot_bid_end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

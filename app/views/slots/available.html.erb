@@ -1,0 +1,45 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Slot name</th>
+      <th>Description</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Min amount</th>
+      <th>Bid start</th>
+      <th>Bid end</th>
+      <th>Last bid</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody >
+    <%= render "available" %>
+  </tbody>
+</table>
+<script type="text/javascript">
+$(".create").click(function(e){
+  sel = $(this).parents(".modal-dialog");
+  form = sel.find("form");
+  bid = sel.find('[name="bid[amount]"]').val();
+  last = sel.find('[name="last_amount"]').val();
+  //alert(bid);
+  //alert(last);
+  if(bid <= last){
+    alert("Bid amount must be higher than last bid amount");
+    return false;
+  }
+  form.submit();
+});
+
+// setInterval(function(){
+//   $(".modal").remove();
+//   $.ajax({
+//     type: 'GET',
+//     url : '/slots/available_partial.js',
+//     success: function(data){} 
+//   });
+// },10000);
+
+</script>

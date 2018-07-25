@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-hover"> 
+ <thead>
+    <tr>
+      <th>Slot</th>
+      <th>User</th>
+      <th>Amount</th>
+      <th>Bid Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bids.each do |bid| %>
+      <tr>
+        <td><%= bid.slot.try(:slot_name) %></td>
+        <td><%= bid.user.try(:full_name) %></td>
+        <td><%= bid.amount %></td>
+        <td><%= bid.created_at.strftime('%d/%m/%Y %l:%M %p') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bid', new_bid_path %>
